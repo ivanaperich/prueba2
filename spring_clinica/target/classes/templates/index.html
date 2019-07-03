@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ClinicPlus</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="jumbotron m-5">
+        <h1 class="display-3">Bienvenido a ClinicPlus</h1>
+        <p class="lead">Pacientes, Recetas, etc.</p>
+        <hr class="my-2">
+        <th:block th:unless="${session.medicoLogueado}">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/login" role="button">Ingresa aqui</a>
+            </p>
+        </th:block>
+        <th:block th:if="${session.medicoLogueado}">
+            <form action="/logout" method="post">
+                <input type="submit" value="logout">
+            </form>
+        </th:block>
+        <br>
+        <th:block th:if="${session.medicoLogueado}">
+            <div class="btn-group-vertical">
+                <a class="btn btn-primary btn-lg" role="button" href="/pacientes/ver">Pacientes</a>
+                <a class="btn btn-primary btn-lg" href="recetas/emitidas" role="button">Recetas</a>
+            </div>
+        </th:block>
+    </div>
+
+
+</body>
+
+</html>
